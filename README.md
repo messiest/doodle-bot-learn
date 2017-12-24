@@ -25,10 +25,12 @@ In doing this, you are training a model to not only recognize the object, but be
 
 As an early proof of concept, I implemented this model on the generation of "hand-written" digits that were trained using the MNIST data set.
 
-#### Tasks:
+#### Tasks
 1. Image importing and writing to S3.
-2. Sampling from image-net.org and writing to S3
-3. Sampling existing images from S3 and writing to disk
+2. Sampling from image-net.org and writing to S3.
+3. Sampling existing images from S3 and writing to disk.
+4. Build GAN model.
+5. Run on MNIST dataset.
 
 
 #### [WordNet](http://www.nltk.org/howto/wordnet.html)

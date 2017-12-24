@@ -65,7 +65,7 @@ gan_train_ops = tfgan.gan_train_ops(conditional_gan_model,
 
 # Set up class-conditional visualization. We feed class labels to the generator
 # so that the the first column is `0`, the second column is `1`, etc.
-images_to_eval = 500
+images_to_eval = 1000
 assert images_to_eval % 10 == 0  # ensure multiples of 10
 
 random_noise = tf.random_normal([images_to_eval, 64])
@@ -83,18 +83,20 @@ xent_score = util.mnist_cross_entropy(eval_images, one_hot_labels, MNIST_CLASSIF
 
 global_step = tf.train.get_or_create_global_step()
 train_step_fn = tfgan.get_sequential_train_steps()
+
 loss_values, xent_score_values = [], []
 
 #
 # start session
 #
 with tf.Session() as sess:
-    saver = tf.train.Saver()  # instantiate saver
+    saver = tf.train.Saver()  # TODO (@messiest) this needs to try and load an existing model
+
     sess.run(tf.global_variables_initializer())  # run!
 
     with slim.queues.QueueRunners(sess):
         start_time = time.time()  # start timer
-        for i in range(1001):  # number of steps
+        for i in range(3001):  # number of steps
             cur_loss, _ = train_step_fn(sess, gan_train_ops, global_step, train_step_kwargs={})
             loss_values.append((i, cur_loss))
 
