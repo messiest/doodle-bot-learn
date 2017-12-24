@@ -1,7 +1,8 @@
 # [doodle-bot](https://github.com/messiest/doodle-bot)
 ## Conditional generative adversarial netrwork used for image generation.
 
-### Author: [Christopher Messier](messiest.github.io/)  Email: [messier.development@gmail.com]()
+### Author: [Christopher Messier](messiest.github.io/)
+##### email: [messier.development@gmail.com]()
 
 ### Summary
 Prior to working on this project, I became interested in the idea of hierarchical concepts.
@@ -13,7 +14,7 @@ This is something that is often missing in the application of convolutional neur
 
 Convolutional neural networks alone lack the ability to provide contextual meaning to an image.
 They might be quite good identifying a certain class, but they are unable to recognize that this is an instance of some super class of objects; dogs $\to$ corgis, if you will.
-To arriveat an understanding of theses hierarchical concepts, I'm employing generative adversarial networks.
+To arrive at an understanding of theses hierarchical concepts, I'm employing generative adversarial networks.
 These models have interactions between two networks, a _generator_, and a _discriminator_.
 
 The _discriminator_ is a convolutional neural network that is used for image classification.
@@ -32,7 +33,7 @@ As an early proof of concept, I implemented this model on the generation of "han
 
 #### [WordNet](http://www.nltk.org/howto/wordnet.html)
 Symmantic database of words. Organizes words into hierarchies using _synsets_, or collections of words with related meaning.
-This is accesed via the `nltk.corpus` library.
+This is accessed via the `nltk.corpus` library.
 
 
 #### [ImageNet](https://image-net.org)
