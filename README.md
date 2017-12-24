@@ -32,6 +32,9 @@ As an early proof of concept, I implemented this model on the generation of "han
 4. Build GAN model.
 5. Run on MNIST dataset.
 
+#### Program
+The main program is found in the file `cgan.py`
+
 #### Examples:
 
 #### MNIST
