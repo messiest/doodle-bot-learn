@@ -1,25 +1,32 @@
-import time
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import numpy as np
 import os
+import time
+import numpy as np
+import tensorflow as tf
+
+import matplotlib.pyplot as plt
 
 
-RESULT_DIR = "assets/results/"
+IMAGE_DIR = "assets/images/"
 
-slim = tf.contrib.slim
+slim = tf.contrib.slim  # simplified reference
 
 
 def generated_image(train_step_num, start_time, data_np, save=True):
     """
-    Visualize generator outputs during training.
+    visualize generator outputs during training
 
-    Args:
-        train_step_num: The training step number. A python integer.
-        start_time: Time when training started. The output of `time.time()`. A
-            python float.
-        data: Data to plot. A numpy array, most likely from an evaluated TensorFlow
-            tensor.
+    check for model output
+
+    :param train_step_num:
+    :type train_step_num:
+    :param start_time:
+    :type start_time:
+    :param data_np:
+    :type data_np:
+    :param save:
+    :type save:
+    :return:
+    :rtype:
     """
     print('Training step: %i' % train_step_num)
     time_since_start = (time.time() - start_time) / 60.0
@@ -30,13 +37,15 @@ def generated_image(train_step_num, start_time, data_np, save=True):
     plt.imshow(np.squeeze(data_np), cmap='gray')
 
     if save:
-        result_num = os.listdir(RESULT_DIR)
-        plt.savefig(RESULT_DIR + f'gen_{len(result_num)}.png')
+        path = IMAGE_DIR + 'generated/'
+        plt.savefig(IMAGE_DIR, f'/generated/gen_{len(os.listdir(path))}.png')
 
 
-def image(tensor_to_visualize, save=True):
+def pre_train_image(tensor_to_visualize, save=True):
     """
-    used to visualize generated image pre-training.
+    used to visualize generated image pre-training
+
+    check for proper image input
 
     :param tensor_to_visualize:
     :type tensor_to_visualize:
@@ -54,27 +63,39 @@ def image(tensor_to_visualize, save=True):
     plt.imshow(np.squeeze(images_np), cmap='gray')
 
     if save:
-        result_num = os.listdir(RESULT_DIR)
-        plt.savefig(RESULT_DIR + f'result_{len(result_num)}.png')
+        path = IMAGE_DIR + "raw/"
+        plt.savefig(IMAGE_DIR + f'raw/result_{len(os.listdir(path))}.png')
 
 
-def cross_entropy(xent_scores):
+def cross_entropy(scores, save=True):  # TODO (@messiest) these aren't working due to the *zip(*object) passed
     """
     plot cross entropy score
 
-    :param xent_scores:
-    :type xent_scores:
+    :param scores:
+    :type scores:
     :return:
     :rtype:
     """
-    plt.plot(xent_scores)
+    plt.plot(scores)
     plt.title('Cross entropy score per step')
-    result_num = os.listdir(RESULT_DIR)
-    plt.savefig(RESULT_DIR + f'xent_score_{len(result_num)}.png', dpi=250)
+    result_num = os.listdir(IMAGE_DIR)
+
+    if save:
+        path = IMAGE_DIR + "evaluation/"
+        plt.savefig(IMAGE_DIR + f'evaluation/xent_score_{len(os.listdir(path))}.png', dpi=250)
 
 
-def loss(loss_values):
+def loss(loss_values, save_image=None):  # TODO (@messiest) see the comment above
+    """
+    plot the overall loss for the model
+
+    :param loss_values:
+    :type loss_values:
+    :return:
+    :rtype:
+    """
     plt.title('Training Loss Per Step')
     plt.plot(loss_values)
-    result_num = os.listdir(RESULT_DIR)
-    plt.savefig(RESULT_DIR + f'training_loss_{len(result_num)}.png', dpi=250)
+    if save_image:
+        path = IMAGE_DIR + "evaluation/"
+        plt.savefig(IMAGE_DIR + f'evaluation/training_loss_{len(os.listdir(path))}.png', dpi=250)

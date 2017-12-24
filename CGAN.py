@@ -39,7 +39,7 @@ with tf.device('/cpu:0'):  # pin it to the cpu to free up gpu for propagation
 
 # Sanity check that we're getting images.
 imgs_to_visualize = tfgan.eval.image_reshaper(images[:20,...], num_cols=10)
-visualizer.image(imgs_to_visualize, save=False)
+visualizer.pre_train_image(imgs_to_visualize, save=False)
 
 noise_dims = 64
 conditional_gan_model = tfgan.gan_model(generator_fn=tf_nets.generator,
@@ -49,7 +49,7 @@ conditional_gan_model = tfgan.gan_model(generator_fn=tf_nets.generator,
 
 # Sanity check that currently generated images are garbage.
 cond_generated_data_to_visualize = tfgan.eval.image_reshaper(conditional_gan_model.generated_data[:20,...], num_cols=10)
-visualizer.image(cond_generated_data_to_visualize, save=True)
+visualizer.pre_train_image(cond_generated_data_to_visualize, save=True)
 
 loss = tfgan.gan_loss(conditional_gan_model, gradient_penalty_weight=1.0)
 
@@ -94,7 +94,7 @@ with tf.Session() as sess:
 
     with slim.queues.QueueRunners(sess):
         start_time = time.time()  # start timer
-        for i in range(5001):  # number of steps
+        for i in range(1001):  # number of steps
             cur_loss, _ = train_step_fn(sess, gan_train_ops, global_step, train_step_kwargs={})
             loss_values.append((i, cur_loss))
 
@@ -106,11 +106,13 @@ with tf.Session() as sess:
                 print(f'Current cross entropy score: {xent_score_values[-1][1]:.2f}')
                 visualizer.generated_image(i, start_time, sess.run(reshaped_eval_imgs), save=True)
 
-        #
+
         #  program complete
-        #
         save_path = saver.save(sess, "assets/saved_models/model.ckpt")
         print(f"Model saved in file: {save_path}")
+
+        k = zip(*xent_score_values)
+        print(type(k), k)
 
         plt.plot(*zip(*xent_score_values))
         plt.title('Cross entropy score per step')
