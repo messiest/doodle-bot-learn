@@ -32,7 +32,7 @@ As an early proof of concept, I implemented this model on the generation of "han
 4. Build GAN model.
 5. Run on MNIST dataset.
 
-Generated Output Example:
+#### Examples:
 
 #### MNIST
 ![alt text](https://github.com/messiest/doodle-bot-learn/blob/master/examples/example_1.png "Logo Title Text 1")
