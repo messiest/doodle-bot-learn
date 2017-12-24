@@ -32,6 +32,11 @@ As an early proof of concept, I implemented this model on the generation of "han
 4. Build GAN model.
 5. Run on MNIST dataset.
 
+Generated Output Example:
+
+#### MNIST
+![alt text](exmples/example_1.png "Logo Title Text 1")
+
 
 #### [WordNet](http://www.nltk.org/howto/wordnet.html)
 Symmantic database of words. Organizes words into hierarchies using _synsets_, or collections of words with related meaning.

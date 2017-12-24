@@ -4,5 +4,3 @@ __pycache__/
 assets/
 mnist/
 slim/
-*.png
-*.jpg
