@@ -121,7 +121,6 @@ with tf.Session() as sess:
         result_num = os.listdir(RESULT_DIR)
         plt.savefig(RESULT_DIR + f'xent_score_{len(result_num)}.png', dpi=250)
 
-
         plt.title('Training Loss Per Step')
         plt.plot(*zip(*loss_values))
         plt.savefig(RESULT_DIR + f'training_loss_{len(result_num)}.png', dpi=250)
