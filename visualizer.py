@@ -38,7 +38,7 @@ def generated_image(train_step_num, start_time, data_np, save=True):
 
     if save:
         path = IMAGE_DIR + 'generated/'
-        plt.savefig(IMAGE_DIR, f'/generated/gen_{len(os.listdir(path))}.png')
+        plt.savefig(IMAGE_DIR + f'/generated/gen_{len(os.listdir(path))}.png')
 
 
 def pre_train_image(tensor_to_visualize, save=True):

@@ -96,11 +96,11 @@ with tf.Session() as sess:
 
     with slim.queues.QueueRunners(sess):
         start_time = time.time()  # start timer
-        for i in range(3001):  # number of steps
+        for i in range(50001):  # number of steps
             cur_loss, _ = train_step_fn(sess, gan_train_ops, global_step, train_step_kwargs={})
             loss_values.append((i, cur_loss))
 
-            if not i % 10:
+            if not i % 100:
                 xent_score_values.append((i, sess.run(xent_score)))
 
             if not i % 500:
