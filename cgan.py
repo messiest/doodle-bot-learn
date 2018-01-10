@@ -92,11 +92,13 @@ loss_values, xent_score_values = [], []
 with tf.Session() as sess:
     saver = tf.train.Saver()  # TODO (@messiest) this needs to try and load an existing model
 
-    sess.run(tf.global_variables_initializer())  # run!
+    init = tf.global_variables_initializer()
+    
+    sess.run(init)  # run!
 
     with slim.queues.QueueRunners(sess):
         start_time = time.time()  # start timer
-        for i in range(50001):  # number of steps
+        for i in range(101):  # number of steps
             cur_loss, _ = train_step_fn(sess, gan_train_ops, global_step, train_step_kwargs={})
             loss_values.append((i, cur_loss))
 

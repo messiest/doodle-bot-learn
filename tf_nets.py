@@ -63,10 +63,14 @@ def discriminator(img, conditioning, weight_decay=2.5e-5):
                         weights_regularizer=layers.l2_regularizer(weight_decay),
                         biases_regularizer=layers.l2_regularizer(weight_decay)):
 
-        net = layers.conv2d(img, 64, [4, 4], stride=2)
-        net = layers.conv2d(net, 128, [4, 4], stride=2)
-        net = layers.flatten(net)
+        net = slim.conv2d(img, 64, [4, 4], stride=2)
+        net = slim.conv2d(net, 128, [4, 4], stride=2)
+        net = slim.flatten(net)
         net = tfgan.features.condition_tensor_from_onehot(net, one_hot_labels)
-        net = layers.fully_connected(net, 1024, normalizer_fn=layers.batch_norm)
+        net = slim.fully_connected(net, 1024, normalizer_fn=layers.batch_norm)
 
-        return layers.linear(net, 1)
+        out = slim.linear(net, 1)
+
+        print(out)
+
+        return out

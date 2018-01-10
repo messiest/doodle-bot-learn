@@ -33,6 +33,7 @@ def generated_image(train_step_num, start_time, data_np, save=True):
     print('Time since start: %f m' % time_since_start)
     print('Steps per min: %f' % (train_step_num / time_since_start))
     plt.axis('off')
+    plt.title(f"Step {train_step_num}")
 
     plt.imshow(np.squeeze(data_np), cmap='gray')
 
