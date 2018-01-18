@@ -33,13 +33,13 @@ def generated_image(train_step_num, start_time, data_np, save=True):
     print('Time since start: %f m' % time_since_start)
     print('Steps per min: %f' % (train_step_num / time_since_start))
     plt.axis('off')
-    plt.title(f"Step {train_step_num}")
+#     plt.title(f"Step {train_step_num}")
 
     plt.imshow(np.squeeze(data_np), cmap='gray')
 
     if save:
         path = IMAGE_DIR + 'generated/'
-        plt.savefig(IMAGE_DIR + f'/generated/gen_{len(os.listdir(path))}.png')
+        plt.savefig(IMAGE_DIR + f'/generated/{len(os.listdir(path))}-gen_step_{train_step_num}.png')
 
 
 def pre_train_image(tensor_to_visualize, save=True):
