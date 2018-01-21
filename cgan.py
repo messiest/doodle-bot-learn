@@ -1,22 +1,15 @@
 import os
-import sys
 import time
-import numpy as np
+
+import tensorflow as tf
 import matplotlib.pyplot as plt
+from slim.datasets import download_and_convert_mnist  # TF-Slim data provider.
+from mnist import data_provider  # TFGAN MNIST examples from `tensorflow/models`.
+from mnist import util
 
 import visualizer
 import evaluate
 import tf_nets
-
-
-# TFGAN MNIST examples from `tensorflow/models`.
-from mnist import data_provider
-from mnist import util
-
-# TF-Slim data provider.
-from slim.datasets import download_and_convert_mnist
-
-import tensorflow as tf
 
 
 DATA_DIR = "assets/data/"
